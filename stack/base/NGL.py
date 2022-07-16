@@ -1,7 +1,9 @@
 # problem statement
-# method to get the next greater element from right side of each element
+# method to get the next greater element from left side of each element
 #  eg: i/p = 1,3,2,4 o/p = 3,4,4,-1
-# res is the array that will keep the right greater element at respective index
+# res is the array that will keep the left greater element at respective index
+
+# Difference from NGR is the order which we use for pushing into stack (just reverse the order)
 
 # ====================================================================================================================
 # for each element you take from i/p, check in stack with following conditions
@@ -15,7 +17,7 @@
 from collections import deque
 
 
-def nextLargerElementToRight(arr, n):
+def nextLargerElementToLeft(arr, n):
     res = []
 
     # initialize the result array to be -1
@@ -27,7 +29,7 @@ def nextLargerElementToRight(arr, n):
 
     # start from the end of the array
     # for each element you take from i/p, check in stack with following conditions
-    for j in reversed(range(n)):
+    for j in range(n):
         # to check dq is empty
         if not dq:
             dq.append(arr[j])
@@ -44,3 +46,5 @@ def nextLargerElementToRight(arr, n):
             dq.append(arr[j])
     return res
 
+
+print(nextLargerElementToLeft([1, 3, 2, 4], 4))
