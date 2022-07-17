@@ -44,5 +44,3 @@ def nextLargerElementToRight(arr, n):
             dq.append(arr[j])
     return res
 
-
-print(nextLargerElementToRight([16, 5, 4, 4, 4, 10, 9], 7))
