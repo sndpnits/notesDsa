@@ -46,4 +46,36 @@ def nextSmallerElementToRight(arr, n):
     return res
 
 
-print(nextSmallerElementToRight([5, 2, 3,1,10,3,12], 7))
+# gives the index of nearest smaller element
+def nearestRightSmallerElementIndex(arr, n):
+    idx = []
+    # initialize the result array to be last+1 index, we are going right so last index in right could be n+1
+    for i in range(n):
+        idx.append(n)
+
+    # create a stack with deque
+    dq = deque()
+
+    # start from the first element of the array
+    # for each element you take from i/p, check in stack with following conditions
+    #  pushing the index and while popping, check the array value at the index
+
+    for j in reversed(range(n)):
+        # to check dq is empty
+        if not dq:
+            dq.append(j)
+        # dq[-1] gives you the top of the element
+        elif dq and arr[dq[-1]] < arr[j]:
+            idx[j] = dq[-1]
+            dq.append(j)
+        else:
+            while dq and arr[dq[-1]] >= arr[j]:
+                dq.pop()
+            if dq:
+                idx[j] = dq[-1]
+
+            dq.append(j)
+    return idx
+
+
+# print(nearestRightSmallerElementIndex([5, 2, 3,1,10,3,12], 7))

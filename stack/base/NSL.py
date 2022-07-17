@@ -16,7 +16,7 @@
 from collections import deque
 
 
-def nextSmallerElementToLeft(arr, n):
+def nearestSmallerElementToLeft(arr, n):
     res = []
 
     # initialize the result array to be -1
@@ -46,4 +46,36 @@ def nextSmallerElementToLeft(arr, n):
     return res
 
 
-print(nextSmallerElementToLeft([5, 2, 3, 1, 10, 3, 12], 7))
+# gives the index of nearest smaller element
+def nearestLeftSmallerElementIndex(arr, n):
+    idx = []
+    # initialize the result array to be -1, we are going left so last index in left could be -1
+    for i in range(n):
+        idx.append(-1)
+
+    # create a stack with deque
+    dq = deque()
+
+    # start from the first element of the array
+    # for each element you take from i/p, check in stack with following conditions
+    #  pushing the index and while popping, check the array value at the index
+
+    for j in range(n):
+        # to check dq is empty
+        if not dq:
+            dq.append(j)
+        # dq[-1] gives you the top of the element
+        elif dq and arr[dq[-1]] < arr[j]:
+            idx[j] = dq[-1]
+            dq.append(j)
+        else:
+            while dq and arr[dq[-1]] >= arr[j]:
+                dq.pop()
+            if dq:
+                idx[j] = dq[-1]
+
+            dq.append(j)
+    return idx
+
+
+# print(nearestLeftSmallerElementIndex([5, 2, 3, 1, 10, 3, 12], 7))

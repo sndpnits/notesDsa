@@ -38,7 +38,7 @@ def nextLargerElementToLeft(arr, n):
             res[j] = dq[-1]
             dq.append(arr[j])
         else:
-            while dq and dq[-1] < arr[j]:
+            while dq and dq[-1] <= arr[j]:
                 dq.pop()
             if dq:
                 res[j] = dq[-1]

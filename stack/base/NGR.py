@@ -36,7 +36,7 @@ def nextLargerElementToRight(arr, n):
             res[j] = dq[-1]
             dq.append(arr[j])
         else:
-            while dq and dq[-1] < arr[j]:
+            while dq and dq[-1] <= arr[j]:
                 dq.pop()
             if dq:
                 res[j] = dq[-1]
@@ -44,3 +44,5 @@ def nextLargerElementToRight(arr, n):
             dq.append(arr[j])
     return res
 
+
+print(nextLargerElementToRight([16, 5, 4, 4, 4, 10, 9], 7))
